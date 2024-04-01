@@ -1,0 +1,192 @@
+{
+	"info": {
+		"_postman_id": "af5f0e2d-3d75-4133-a6b7-d67f34bac3a9",
+		"name": "GraphQl",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "14923269"
+	},
+	"item": [
+		{
+			"name": "GET Productos",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query{\r\n    # Query que quiero ejecutar que definí en el schema\r\n    listarProductos{\r\n        # Campos que deseo obtener\r\n        id,nombre, categoria {\r\n            nombre\r\n        }\r\n    }\r\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8090/graphql",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Categorias",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query{\r\n    # Query que quiero ejecutar que definí en el schema\r\n    listarProductos{\r\n        # Campos que deseo obtener\r\n        id,nombre, categoria {\r\n            nombre\r\n        }\r\n    }\r\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8090/graphql",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Categoria por id",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query{\r\n    # Query que quiero ejecutar que definí en el schema\r\n    listarCategoriaPorId(id: 1){\r\n        # Campos que deseo obtener\r\n        id,nombre, productos {\r\n            nombre\r\n        }\r\n    }\r\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8090/graphql",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Productos por id",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query{\r\n    # Query que quiero ejecutar que definí en el schema\r\n    listarProductoPorId(id: \"c27b2dc0-25b6-43bd-8220-d107c0190481\"){\r\n        # Campos que deseo obtener\r\n        nombre, precio, categoria {\r\n            nombre, productos {\r\n                nombre\r\n            }\r\n        }\r\n    }\r\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8090/graphql",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CREATE Producto",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation{\r\n    guardarProducto(productoRequest: {\r\n        #Valores a guardar\r\n        nombre : \"Prod Graph\",\r\n        precio: 3400,\r\n        cantidad: 4,\r\n        categoriaId: 2\r\n    }){\r\n        # Que deseo que retorne\r\n        id, nombre, precio, cantidad, categoria {\r\n            nombre\r\n        }\r\n    }\r\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8090/graphql",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UPDATE Producto",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation($name: String, $price: Float, $quantity: Int, $categoryId: Float){\r\n    actualizarProducto(id: \"2fa4dd2a-831d-4802-bd0e-c23b36984223\",\r\n    productoRequest: {\r\n        #Valores a guardar\r\n        nombre : $name,\r\n        precio: $price,\r\n        cantidad: $quantity,\r\n        categoriaId: $categoryId\r\n    }){\r\n        # Que deseo que retorne\r\n        id, nombre, precio, cantidad, categoria {\r\n            nombre\r\n        }\r\n    }\r\n}",
+						"variables": "{\r\n    \"name\": \"Printer\",\r\n    \"price\": 1200,\r\n    \"quantity\": 2,\r\n    \"categoryId\": 2\r\n}"
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8090/graphql",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE Producto",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation{\r\n    eliminarProducto(id: \"b051bd33-83fc-4de9-ae44-7385656bac02\")\r\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8090/graphql",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
